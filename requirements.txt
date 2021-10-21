@@ -1,0 +1,33 @@
+# For running HEDDEx
+torch==1.8.1
+seqeval==0.0.12
+pytorch-crf==0.7.2
+transformers==4.6.1 # 2.7.0
+textacy
+numpy
+scispacy
+spacy
+wandb
+nltk
+coloredlogs
+jsonpickle
+latex2mathml
+xmljson
+lxml
+xmltodict
+termcolor
+gunicorn
+colorama
+matplotlib
+configparser
+
+# For deploying the api service
+fastapi
+aiofiles
+aiohttp
+uvicorn
+
+# model files for spacy and scispacy
+https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_md-0.4.0.tar.gz
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz
+

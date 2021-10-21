@@ -1,0 +1,12 @@
+.git
+.gitignore
+node_modules
+npm-debug.log
+Dockerfile*
+docker-compose*
+LICENSE
+.vscode
+logs
+model_files
+data_files
+logs
