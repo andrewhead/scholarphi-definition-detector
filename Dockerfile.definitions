@@ -1,0 +1,41 @@
+FROM ubuntu:latest
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Setup a spot for the api code
+RUN mkdir -p /heddex
+WORKDIR  /heddex
+
+# Install dependencies for fetching model weights.
+RUN apt-get update -y
+RUN apt-get install -y wget unzip
+
+# Copy over the models first. This takes a really long time, so it is definitely not
+# a set of commands one would want to have to run if any of the dependencies or other
+# setup instructions have changed.
+# TODO: create separate scripts for downloading each type of mode.
+COPY download_definitions_model.sh download_definitions_model.sh
+RUN ./download_definitions_model.sh
+
+# Install dependencies for running HEDDEx.
+RUN apt-get update -y
+RUN apt-get install -y python3-pip python3-dev git python3-opencv \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && pip3 install --upgrade pip
+
+# Copy over the source code
+COPY . /heddex
+COPY config.ini.definitions config.ini
+
+# Install Python dependencies
+RUN pip install --upgrade pip setuptools wheel
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+RUN python setup.py install
+
+# Run the server.
+WORKDIR  /heddex/tools
+EXPOSE 8000
+ENTRYPOINT [ "uvicorn" ]
+CMD ["inference_server:app", "--host", "0.0.0.0", "--reload", "--port", "8080"]

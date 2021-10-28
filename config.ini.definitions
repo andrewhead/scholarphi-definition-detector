@@ -1,0 +1,3 @@
+[heddex]
+model_name = DocDefQueryInplaceFixedMIA
+model_dir = model_files/symnick_query_mia
