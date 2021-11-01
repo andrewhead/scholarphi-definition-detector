@@ -16,7 +16,7 @@ there are differences in the model weights.
 Build the abbreviation expansion service as follows:
 
 ```bash
-docker build . -t abbreviation-detector -f Dockerfile.definitions
+docker build . -t abbreviation-detector -f Dockerfile.abbreviations
 ```
 
 This build will take a long time, because one of the steps in the build process 
