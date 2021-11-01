@@ -133,7 +133,7 @@ is to download a rather large file containing model weights.
 Then, launch the service as follows:
 
 ```bash
-docker run -it --rm -p 8000:8080 abbreviation-detector
+docker run -it --rm -p 8000:8080 symbol-definition-detector
 ```
 
 See the notes above in the "Abbreviation service" section for suggestions of 
